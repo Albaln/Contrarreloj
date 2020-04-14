@@ -37,7 +37,6 @@ public class Contrarreloj {
                     break;
                 case 3: 
                      aclasificados=Clasificados.llegada(aclasificados, num_clasificados,acorredores);
-                     System.out.println(aclasificados[0]);
                     break;
                 case 4: // libre
                     break;
