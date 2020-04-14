@@ -1,6 +1,6 @@
 package contrarreloj;
 
-import java.util.Scanner;
+import java.util.*;
 
 /**
  *
@@ -33,10 +33,12 @@ public class Contrarreloj {
             switch (opcion) {
 
                 case 1:  // mostrar la clasificación de los que ya hayan llegado
+                    System.out.println("Num clsi " + num_clasificados);
                     Clasificados.mostrarclasi(aclasificados, num_clasificados, acorredores);
                     break;
                 case 3: 
                      aclasificados=Clasificados.llegada(aclasificados, num_clasificados,acorredores);
+                     num_clasificados++;
                     break;
                 case 4: // libre
                     break;
