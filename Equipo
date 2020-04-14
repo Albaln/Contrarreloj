@@ -1,0 +1,47 @@
+package contrarreloj;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Alba
+ */
+public class Equipo {
+    
+    
+    public static void mostrarequipos(Corredor[] corr){
+        //Mostrar equipos es sencillo los for y mostrar los .equipo
+        //Si tal guardarlos en un array temporal para que no repita
+        String[] equipo=new String[3];
+        int num=0;//Para saber el numero de personas que ha sido leido
+        boolean igual=false;
+        for(int i=0;i<3;i++){
+            igual=false;
+            equipo[i]=corr[i].equipo;//Guardamos el equipo para que no se repita
+            for(int j=0;j<num;j++){
+                if(corr[i].equipo.compareToIgnoreCase(equipo[j])==0){
+                    igual=true;
+                }
+            }
+            if(igual!=true){
+                System.out.println("Equipo " + corr[i].equipo);
+            }
+            num++;
+        }
+    }
+    
+    
+    public static void informacionEquipo(Corredor[] corr){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("De que Equipo desea ver su informacion?");
+        String eq=sc.nextLine();
+        
+        for(int i=0;i<3;i++){
+            if(corr[i].equipo.compareToIgnoreCase(eq)==0){
+                System.out.println("Corredor " + corr[i].nombre + " con el dorsal " + corr[i].dorsal);
+            }
+        }
+        
+    }
+    
+}
