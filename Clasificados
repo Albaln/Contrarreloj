@@ -20,9 +20,11 @@ public class Clasificados {
         Scanner sc = new Scanner(System.in);
         int igual = 0,d=0,t=0;
         
+        
         do {
             System.out.println("Dorsal del corredor");
             d= sc.nextInt();
+            
             for (int i = 0; i < 3; i++) {
                 if (corr[i].dorsal == d || igual == 1) {
                     igual = 1;//dorsal encontrado
@@ -31,57 +33,58 @@ public class Clasificados {
             if(igual==0){
                 System.out.println("Dorsal no encontrado");
             }
-        } while (igual == 0);//Se repite mientras no encuentre el dorsal del corredor
+        } while (igual == 0);
         System.out.println("Tiempo de ese corredor");
         t = sc.nextInt();
         
         clasi[num_clasi]=new Clasificados(d,t);
-        num_clasi++;
         
+        System.out.println(num_clasi);
         
         return clasi;
     }
     
     
-    public static void ordenar(Clasificados[] clasi,int num_clasi){
+    public static Clasificados[] ordenar(Clasificados[] clasi,int num_clasi){
         
         boolean cambio=true;
         Clasificados aux;
         
         while(cambio==true){
             cambio=false;
-            for(int i=0;i<num_clasi-2;i++){
+            for(int i=0;i<num_clasi-1;i++){
                 if(clasi[i].tiempo>clasi[i+1].tiempo){
                     aux=clasi[i];
                     clasi[i]=clasi[i+1];
-                    clasi[i+1]=clasi[i];
+                    clasi[i+1]=aux;
+                    
+                    cambio=true;
                 }
             }
             
         }
+        return clasi;
     }
     
-   public static void mostrarclasi(Clasificados[] clasi,int num,Corredor[] corr){
-        
+    
+    public static void mostrarclasi(Clasificados[] clasi, int num, Corredor[] corr) {
+
         //Ordenacion del array
         //num es el numero de clasificados
-        //Clasificados.ordenar(clasi,num);
+        clasi=Clasificados.ordenar(clasi,num);
         
-        for(int i=0;i<3;i++){//recorre todos los corredores
-            for(int j=0;j<num;j++){//recorre hasta el numero de clasificados
-                //Si encuentra un corredor y un clasificado con el mismo dorsal pone sus datos
-                if(corr[i].dorsal==clasi[j].dorsal){//Si esta clasificado para corr se usa la i y para los clasificados las j
+        for (int i = 0; i <3; i++) {
+            for (int j = 0; j < num; j++) {
+                 if(corr[i].dorsal==clasi[j].dorsal){//Si esta clasificado para corr se usa la i y para los clasificados las j
                     
                     System.out.println("El corredor con el dorsal " + clasi[i].dorsal + " de nombre " + corr[i].nombre
-                            + " perteneciente al equipo" + corr[i].equipo + " tuvo un tiempo de " + clasi[j].tiempo );
+                            + " perteneciente al equipo " + corr[i].equipo + " tuvo un tiempo de " + clasi[j].tiempo );
                     
                 }
             }
         }
-        
+
     }
-    
-    
     
     public static void mostrarCorredor(Corredor[] corr,int d){
         for (int j = 0; j < 3; j++) {
@@ -94,3 +97,4 @@ public class Clasificados {
         }
     }
 }
+
