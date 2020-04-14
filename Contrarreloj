@@ -1,0 +1,70 @@
+package contrarreloj;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Alba
+ */
+public class Contrarreloj {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        
+        int opcion;
+        int d=0;  
+
+        Corredor acorredores[];
+        acorredores = new Corredor[3];   // Array de los corredores que hay
+        
+        Clasificados aclasificados[];
+        aclasificados = new Clasificados[3]; 
+        int num_clasificados=0;//Para saber el numero total de clasificados, no todos los corredores tienen por que clasificarse
+
+        Corredor.cargarDatos(acorredores); // rellena el array  acorredores
+
+        opcion = Corredor.menu();
+        
+        
+        while (opcion != 99) {
+            switch (opcion) {
+
+                case 1:  // mostrar la clasificación de los que ya hayan llegado
+                    Clasificados.mostrarclasi(aclasificados, num_clasificados, acorredores);
+                    break;
+                case 3: 
+                     aclasificados=Clasificados.llegada(aclasificados, num_clasificados,acorredores);
+                     System.out.println(aclasificados[0]);
+                    break;
+                case 4: // libre
+                    break;
+                case 5: // mostrar la información de un corredor
+                    System.out.println("Dorsal del corredor");
+                    d=sc.nextInt();
+                    Clasificados.mostrarCorredor(acorredores, d);
+                case 6: // libre
+                    break;
+                case 7: // mostrar la lista de corredores de la carrera
+                    Corredor.mostrarDatos(acorredores);
+                    break;
+                case 8:// mostrar equipos participantes
+                    Equipo.mostrarequipos(acorredores);
+                    break;
+                case 9: // mostrar información de un equipo
+                    Equipo.informacionEquipo(acorredores);
+                    break;
+                default:
+                    System.out.println("Numero no valido");
+                    break;
+            } // fin del switch
+
+            opcion = Corredor.menu();
+
+        } // del while 
+        
+    }
+    
+}
